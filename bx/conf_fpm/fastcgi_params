@@ -22,8 +22,25 @@ fastcgi_param  SERVER_PORT        $server_port;
 fastcgi_param  SERVER_NAME        $server_name;
 
 # some modules depend on this variable, if we switch to php-fpm on already working sites, we get non-working modules.
-fastcgi_param  HTTP_HOST          $host:$server_port;
-fastcgi_param  SERVER_ADDR        127.0.0.1;
+fastcgi_param  HTTP_HOST              $host:$server_port;
+fastcgi_param  SERVER_ADDR            127.0.0.1;
+fastcgi_param  SCRIPT_URL             $fastcgi_script_name;
+fastcgi_param  SCRIPT_URI             http://$host:$server_port$fastcgi_script_name;
+fastcgi_param  HTTP_HTTPS             YES;
+fastcgi_param  CONTEXT_DOCUMENT_ROOT  $document_root;
+fastcgi_param  UNIQUE_ID              $request_id;
+fastcgi_param  HTTP_X_FORWARDED_FOR   $remote_addr;
+fastcgi_param  HTTP_X_FORWARDED_PROTO $scheme;
+
+fastcgi_param  PHP_AUTH_USER          $remote_user;
+#fastcgi_param REMOTE_USER            $remote_user;
+fastcgi_param  PHP_AUTH_PW            $http_authorization;
+
+# not sure if this is necessary
+fastcgi_param AUTHBIND_UNAVAILABLE    yes;
+fastcgi_param HTTP_CONNECTION         close;
+
+
 
 # PHP only, required if PHP was built with --enable-force-cgi-redirect
 fastcgi_param  REDIRECT_STATUS    200;
