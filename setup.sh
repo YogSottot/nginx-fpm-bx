@@ -14,7 +14,7 @@ wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/
 wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/php-fpm.d/default.conf -N -P /etc/php-fpm.d/
 
 mkdir -p /etc/systemd/system/php-fpm.service.d/
-wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/systemd/system/php-fpm.service.d/override.conf-N -P /etc/systemd/system/php-fpm.service.d/
+wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/systemd/system/php-fpm.service.d/override.conf -N -P /etc/systemd/system/php-fpm.service.d/
 
 systemctl daemon-reload
 
