@@ -6,7 +6,7 @@ set -e
 # wget http://www.1c-bitrix.ru/download/files/scripts/bitrix_server_test.php -P /home/bitrix/www/
 
 
-
+# yum install php56-php-fpm php56-php-bcmath php56-php-cli php56-php-gd php56-php-mbstring php56-php-mcrypt php56-php-mysqlnd php56-php-opcache php56-php-pdo  php56-php-pecl-imagick php56-php-soap php56-php-xml php56
 
 # php-fpm additional settings
 mkdir -p /etc/php-fpm.d/
