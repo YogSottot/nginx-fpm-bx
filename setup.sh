@@ -16,6 +16,8 @@ wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/
 mkdir -p /etc/systemd/system/php-fpm.service.d/
 wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/systemd/system/php-fpm.service.d/override.conf-N -P /etc/systemd/system/php-fpm.service.d/
 
+systemctl daemon-reload
+
 mkdir -p /etc/nginx/bx/conf_fpm/
 wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/bx/conf_fpm/bitrix_general.conf -N -P /etc/nginx/bx/conf_fpm/
 wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/bx/conf_fpm/bitrix.conf -N -P /etc/nginx/bx/conf_fpm/
