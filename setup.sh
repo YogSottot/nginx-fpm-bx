@@ -35,7 +35,7 @@ cp /etc/nginx/bx/site_avaliable/bx* /etc/nginx/bx/site_avaliable_fpm/
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/set\ \$proxyserver\  \"http\:\/\/127\.0\.0\.1\:8887\"\;/set\ \$php_sock\  unix\:\/var\/run\/php-fpm\/default\.socket\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/set\ \$proxyserver\  \"http\:\/\/127\.0\.0\.1\:8888\"\;/set\ \$php_sock\  unix\:\/var\/run\/php-fpm\/default\.socket\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/proxy_ignore_client_abort/fastcgi_ignore_client_abort/g'
-find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/bx\/conf/bx\/conf_fpm/g'
+find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/bx\/conf\/bitrix/bx\/conf_fpm\/bitrix/g'
 
 bash <(curl -sL https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/session.sh)
 #wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/bx/site_avaliable/s1_simple.conf -N -O /etc/nginx/bx/site_avaliable_fpm/s1.conf
