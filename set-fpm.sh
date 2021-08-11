@@ -17,12 +17,12 @@ cp /etc/nginx/bx/site_avaliable/bx_ext_${domain}.conf /etc/nginx/bx/site_avaliab
 cp /etc/nginx/bx/site_avaliable/bx_ext_ssl_${domain}.conf /etc/nginx/bx/site_avaliable_fpm/
 
 
-find /etc/nginx/bx/site_avaliable_fpm/bx_ext_${domain}.conf  -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/'${php_version}'\.socket\;/g'
+find /etc/nginx/bx/site_avaliable_fpm/bx_ext_${domain}.conf  -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/php'${php_version}'\.socket\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/bx_ext_${domain}.conf  -type f -print0 | xargs -0 sed -i 's/proxy_pass\ \$proxyserver\;/error_page\ 404\ =\ \@bitrix\;\n\    log_not_found off\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/bx_ext_${domain}.conf  -type f -print0 | xargs -0 sed -i 's/proxy_ignore_client_abort/fastcgi_ignore_client_abort/g'
 find /etc/nginx/bx/site_avaliable_fpm/bx_ext_${domain}.conf  -type f -print0 | xargs -0 sed -i 's/bx\/conf\/bitrix/bx\/conf_fpm\/bitrix/g'
 
-find /etc/nginx/bx/site_avaliable_fpm/bx_ext_ssl_${domain}.conf  -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/'${php_version}'\.socket\;/g'
+find /etc/nginx/bx/site_avaliable_fpm/bx_ext_ssl_${domain}.conf  -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/php'${php_version}'\.socket\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/bx_ext_ssl_${domain}.conf  -type f -print0 | xargs -0 sed -i 's/proxy_pass\ \$proxyserver\;/error_page\ 404\ =\ \@bitrix\;\n\    log_not_found off\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/bx_ext_ssl_${domain}.conf  -type f -print0 | xargs -0 sed -i 's/proxy_ignore_client_abort/fastcgi_ignore_client_abort/g'
 find /etc/nginx/bx/site_avaliable_fpm/bx_ext_ssl_${domain}.conf  -type f -print0 | xargs -0 sed -i 's/bx\/conf\/bitrix/bx\/conf_fpm\/bitrix/g'
