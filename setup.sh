@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+
 # use
 # bash <(curl -sL https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/setup.sh)
 
