@@ -18,14 +18,16 @@
 
 # yum install php74-php-fpm php74-php-bcmath php74-php-cli php74-php-gd php74-php-mbstring php74-php-mcrypt php74-php-mysqlnd php74-php-opcache php74-php-pdo  php74-php-pecl-imagick php74-php-soap php74-php-xml php74 php74-php-pecl-geoip php74-php-ldap php74-php-pecl-memcache php74-php-pecl-apcu php74-php-pecl-rrd php74-php-sodium php74-php-pspell php74-php-pecl-zip 
 
-# yum install php80-php-fpm php80-php-bcmath php80-php-cli php80-php-gd php80-php-mbstring php80-php-mcrypt php80-php-mysqlnd php80-php-opcache php80-php-pdo  php80-php-pecl-imagick php80-php-soap php80-php-xml php80 php80-php-pecl-geoip php80-php-ldap php80-php-pecl-memcache php80-php-pecl-apcu php80-php-pecl-rrd php80-php-sodium php80-php-pspell php80-php-pecl-zip 
+# yum install php80-php-fpm php80-php-bcmath php80-php-cli php80-php-gd php80-php-mbstring php80-php-mcrypt php80-php-mysqlnd php80-php-opcache php80-php-pdo  php80-php-pecl-imagick php80-php-soap php80-php-xml php80 php80-php-pecl-geoip php80-php-ldap php80-php-pecl-memcache php80-php-pecl-apcu php80-php-pecl-rrd php80-php-sodium php80-php-pspell php80-php-pecl-zip php80-php-intl php80-php-process
+
+# yum install php81-php-fpm php81-php-bcmath php81-php-cli php81-php-gd php81-php-mbstring php81-php-mcrypt php81-php-mysqlnd php81-php-opcache php81-php-pdo  php81-php-pecl-imagick-im6 php81-php-soap php81-php-xml php81 php81-php-pecl-geoip php81-php-ldap php81-php-pecl-memcache php81-php-pecl-apcu php81-php-pecl-rrd php81-php-sodium php81-php-pspell php81-php-pecl-zip php81-php-intl php81-php-process
 
 yum install php-fpm -y
 
 # php-fpm additional settings
 mkdir -p /etc/php-fpm.d/
-wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/php-fpm.d/beta.conf -N -P /etc/php-fpm.d/
-wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/php-fpm.d/default.conf -N -P /etc/php-fpm.d/
+#wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/php-fpm.d/beta.conf -N -P /etc/php-fpm.d/
+wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/php-fpm.d/74.conf -N -P /etc/php-fpm.d/
 
 mkdir -p /etc/systemd/system/php-fpm.service.d/
 wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/systemd/system/php-fpm.service.d/override.conf -N -P /etc/systemd/system/php-fpm.service.d/
@@ -51,6 +53,9 @@ wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/
 mkdir -p /etc/systemd/system/php80-php-fpm.service.d/
 wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/systemd/system/php-fpm.service.d/override.conf -N -P /etc/systemd/system/php80-php-fpm.service.d/
 
+mkdir -p /etc/systemd/system/php81-php-fpm.service.d/
+wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/others/etc/systemd/system/php-fpm.service.d/override.conf -N -P /etc/systemd/system/php81-php-fpm.service.d/
+
 systemctl daemon-reload
 
 mkdir -p /etc/nginx/bx/conf_fpm/
@@ -65,10 +70,13 @@ mkdir -p /etc/nginx/bx/site_avaliable_fpm/
 cp /etc/nginx/bx/site_avaliable/s* /etc/nginx/bx/site_avaliable_fpm/
 cp /etc/nginx/bx/site_avaliable/bx* /etc/nginx/bx/site_avaliable_fpm/
 
-find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/php-fpm\/default\.socket\;/g'
+find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/php74.socket\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/proxy_pass\ \$proxyserver\;/error_page\ 404\ =\ \@bitrix\;\n\    log_not_found off\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/proxy_ignore_client_abort/fastcgi_ignore_client_abort/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/bx\/conf\/bitrix/bx\/conf_fpm\/bitrix/g'
+
+wget  https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/set-fpm.sh /etc/nginx/bx/
+chmod +x /etc/nginx/bx/set-fpm.sh
 
 bash <(curl -sL https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/session.sh)
 #wget https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/bx/site_avaliable/s1_simple.conf -N -O /etc/nginx/bx/site_avaliable_fpm/s1.conf
@@ -82,6 +90,7 @@ nginx -t # && systemctl reload nginx
 # cp /etc/php-fpm.d/74.conf /etc/opt/remi/php72/php-fpm.d/72.conf
 # cp /etc/php-fpm.d/74.conf /etc/opt/remi/php73/php-fpm.d/73.conf
 # cp /etc/php-fpm.d/74.conf /etc/opt/remi/php80/php-fpm.d/80.conf
+# cp /etc/php-fpm.d/74.conf /etc/opt/remi/php81/php-fpm.d/81.conf
 
 # cp /etc/php.d/bitrixenv.ini /etc/opt/remi/php56/php.d/
 # cp /etc/php.d/bitrixenv.ini /etc/opt/remi/php70/php.d/
@@ -90,6 +99,7 @@ nginx -t # && systemctl reload nginx
 # cp /etc/php.d/bitrixenv.ini /etc/opt/remi/php73/php.d/
 # cp /etc/php.d/bitrixenv.ini /etc/opt/remi/php74/php.d/
 # cp /etc/php.d/bitrixenv.ini /etc/opt/remi/php80/php.d/
+# cp /etc/php.d/bitrixenv.ini /etc/opt/remi/php81/php.d/
 
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php56/php.d/
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php70/php.d/
@@ -98,6 +108,7 @@ nginx -t # && systemctl reload nginx
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php73/php.d/
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php74/php.d/
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php80/php.d/
+# cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php81/php.d/
 
 # find /etc/opt/remi/php56/php-fpm.d/56.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php56/g'
 # find /etc/opt/remi/php70/php-fpm.d/70.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php70/g'
@@ -105,3 +116,5 @@ nginx -t # && systemctl reload nginx
 # find /etc/opt/remi/php72/php-fpm.d/72.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php72/g'
 # find /etc/opt/remi/php73/php-fpm.d/73.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php73/g'
 # find /etc/opt/remi/php80/php-fpm.d/80.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php80/g'
+# find /etc/opt/remi/php81/php-fpm.d/81.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php81/g'
+
