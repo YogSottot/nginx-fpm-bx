@@ -75,7 +75,7 @@ find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/prox
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/proxy_ignore_client_abort/fastcgi_ignore_client_abort/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/bx\/conf\/bitrix/bx\/conf_fpm\/bitrix/g'
 
-wget  https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/set-fpm.sh /etc/nginx/bx/
+wget  https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/set-fpm.sh -N -P /etc/nginx/bx/
 chmod +x /etc/nginx/bx/set-fpm.sh
 
 bash <(curl -sL https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/session.sh)
