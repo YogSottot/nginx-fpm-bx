@@ -118,3 +118,12 @@ nginx -t # && systemctl reload nginx
 # find /etc/opt/remi/php80/php-fpm.d/80.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php80/g'
 # find /etc/opt/remi/php81/php-fpm.d/81.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php81/g'
 
+# truncate -s 0 /etc/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php81/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php80/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php74/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php73/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php72/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php71/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php70/php-fpm.d/www.conf
+# truncate -s 0 /etc/opt/remi/php56/php-fpm.d/www.conf
