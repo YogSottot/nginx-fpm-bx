@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -xeuo pipefail
 
 domain=$1
 php_version=$2

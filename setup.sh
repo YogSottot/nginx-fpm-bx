@@ -110,6 +110,15 @@ nginx -t # && systemctl reload nginx
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php80/php.d/
 # cp /etc/php.d/z_bx_custom.ini /etc/opt/remi/php81/php.d/
 
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php56/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php70/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php71/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php72/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php73/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php74/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php80/php.d/
+# cp /etc/php.d/10-opcache.ini /etc/opt/remi/php81/php.d/
+
 # find /etc/opt/remi/php56/php-fpm.d/56.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php56/g'
 # find /etc/opt/remi/php70/php-fpm.d/70.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php70/g'
 # find /etc/opt/remi/php71/php-fpm.d/71.conf -type f -print0 | xargs -0 sed -i -r 's/php74/php71/g'
