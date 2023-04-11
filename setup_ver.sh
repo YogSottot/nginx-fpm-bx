@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -xeuo pipefail
 # use
-# curl -sL https://raw.githubusercontent.com/YogSottot/useful_scripts/master/bitrix/auto_setup.sh | bash -s -- php_ver (56 — 81)
+# curl -sL https://raw.githubusercontent.com/YogSottot/nginx-fpm-bx/master/setup_ver.sh | bash -s -- php_ver (56 — 81)
 
 # wget http://www.1c-bitrix.ru/download/files/scripts/bitrix_server_test.php -P /home/bitrix/www/
 

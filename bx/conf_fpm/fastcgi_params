@@ -45,3 +45,9 @@ fastcgi_param HTTP_CONNECTION         close;
 
 # PHP only, required if PHP was built with --enable-force-cgi-redirect
 fastcgi_param  REDIRECT_STATUS    200;
+
+
+# bitrix-env
+fastcgi_param BITRIX_VA_VER 7.5.2;
+fastcgi_param BITRIX_ENV_TYPE general;
+
