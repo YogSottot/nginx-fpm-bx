@@ -87,3 +87,5 @@ find /etc/opt/remi/php"${php_ver}"/php-fpm.d/"${php_ver}".conf -type f -print0 |
 
 truncate -s 0 /etc/php-fpm.d/www.conf
 truncate -s 0 /etc/opt/remi/php"${php_ver}"/php-fpm.d/www.conf
+
+systemctl enable --now php"${php_ver}"-php-fpm.service
