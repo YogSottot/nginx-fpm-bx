@@ -61,7 +61,7 @@ mkdir -p /etc/nginx/bx/site_avaliable_fpm/
 cp /etc/nginx/bx/site_avaliable/s* /etc/nginx/bx/site_avaliable_fpm/
 cp /etc/nginx/bx/site_avaliable/bx* /etc/nginx/bx/site_avaliable_fpm/
 
-find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/php74.socket\;/g'
+find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i -r 's/set\ \$proxyserver(.*)/set\ \$php_sock\  unix\:\/var\/run\/php'${php_ver}'\.socket\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/proxy_pass\ \$proxyserver\;/error_page\ 404\ =\ \@bitrix\;\n\    log_not_found off\;/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/proxy_ignore_client_abort/fastcgi_ignore_client_abort/g'
 find /etc/nginx/bx/site_avaliable_fpm/ -type f -print0 | xargs -0 sed -i 's/bx\/conf\/bitrix/bx\/conf_fpm\/bitrix/g'
